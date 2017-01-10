@@ -34,7 +34,7 @@ dcli -g /root/all_group -l root 'rm /var/log/exadatatmp/sundiag*.tar.bz2' | tee 
 #  Normal sundiag.sh execution
 
 echo `date`": Running dcli sundiag.sh on all nodes" | tee -a "$script_log"
-dcli -g /root/all_group -l root '/opt/oracle.SupportTools/sundiag.sh 2>/dev/null'   | tee -a "$script_log"
+dcli -g /root/all_group -l root '/opt/oracle.SupportTools/sundiag.sh 2>/dev/null'   | tee -a "$script_log" >/dev/null
 
 for H in `cat /root/all_group`; do  scp -p $H:/var/log/exadatatmp/sundiag*.tar.bz2 /tmp/sundiag_output_$(date +%Y%m%d) ; done  | tee -a "$script_log"
 
@@ -44,6 +44,6 @@ cd /tmp;tar -jcvf /tmp/${file_name} sundiag_output_$(date +%Y%m%d)/sundiag*.tar.
 
 echo `date`": Combined tar file of /tmp/sundiag_output_$(date +%Y%m%d) created as /tmp/${file_name}"  | tee -a "$script_log"
 
-echo `date`": Generated sundiag files are now located compress to /tmp/${file_name}. You can review the logfile ${script_log} for errors. All done now. Have a great day."  | tee -a "$script_log"
+echo `date`":  You can review the logfile ${script_log} for errors. All done now. Have a great day."  | tee -a "$script_log"
 
 exit
