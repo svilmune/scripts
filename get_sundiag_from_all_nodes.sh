@@ -12,7 +12,7 @@
 export script_dir=/tmp/sundiag_output_$(date +%Y%m%d)
 export script_log=/tmp/sundiag_output_$(date +%Y%m%d)/diagnostics_output_$(date +%Y%m%d).log
 
-echo `date`": Getting sundiag scripts from all nodes" | tee -a "$script_log"
+echo `date`": Starting to run sundiag scripts from all nodes" | tee -a "$script_log"
 
 if [ -d "$script_dir" ]
 then
